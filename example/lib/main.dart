@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               configureChip: (lang) {
                 return ChipConfiguration(
-                  label: Text(lang.name),
+                  label: Text(lang.name != null ? lang.name : ""),
                   backgroundColor: Colors.green,
                   labelStyle: TextStyle(color: Colors.white),
                   deleteIconColor: Colors.white,
@@ -105,12 +105,8 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               onChanged: () {
                 setState(() {
-                  _selectedValuesJson = _selectedLanguages
-                      .map<String>((lang) => '\n${lang.toJson()}')
-                      .toList()
-                      .toString();
-                  _selectedValuesJson =
-                      _selectedValuesJson.replaceFirst('}]', '}\n]');
+                  _selectedValuesJson = _selectedLanguages.map<String>((lang) => '\n${lang.toJson()}').toList().toString();
+                  _selectedValuesJson = _selectedValuesJson.replaceFirst('}]', '}\n]');
                 });
               },
             ),
@@ -144,9 +140,7 @@ class LanguageService {
       Language(name: 'PHP', position: 4),
       Language(name: 'C#', position: 5),
       Language(name: 'C++', position: 6),
-    ]
-        .where((lang) => lang.name.toLowerCase().contains(query.toLowerCase()))
-        .toList();
+    ].where((lang) => lang.name.toLowerCase().contains(query.toLowerCase())).toList();
   }
 }
 
