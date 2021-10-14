@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               onAdded: (language) {
                 // api calls here, triggered when add to tag button is pressed
-                return Language();
+                return Language(name: language.name, position: -1);
               },
               configureSuggestion: (lang) {
                 return SuggestionConfiguration(
@@ -105,8 +105,12 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               onChanged: () {
                 setState(() {
-                  _selectedValuesJson = _selectedLanguages.map<String>((lang) => '\n${lang.toJson()}').toList().toString();
-                  _selectedValuesJson = _selectedValuesJson.replaceFirst('}]', '}\n]');
+                  _selectedValuesJson = _selectedLanguages
+                      .map<String>((lang) => '\n${lang.toJson()}')
+                      .toList()
+                      .toString();
+                  _selectedValuesJson =
+                      _selectedValuesJson.replaceFirst('}]', '}\n]');
                 });
               },
             ),
@@ -140,7 +144,9 @@ class LanguageService {
       Language(name: 'PHP', position: 4),
       Language(name: 'C#', position: 5),
       Language(name: 'C++', position: 6),
-    ].where((lang) => lang.name.toLowerCase().contains(query.toLowerCase())).toList();
+    ]
+        .where((lang) => lang.name.toLowerCase().contains(query.toLowerCase()))
+        .toList();
   }
 }
 
