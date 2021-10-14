@@ -30,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _selectedValuesJson = 'Nothing to show';
-  List<Language> _selectedLanguages;
+  late List<Language> _selectedLanguages;
 
   @override
   void initState() {
@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               configureChip: (lang) {
                 return ChipConfiguration(
-                  label: Text(lang.name != null ? lang.name : ""),
+                  label: Text(lang.name),
                   backgroundColor: Colors.green,
                   labelStyle: TextStyle(color: Colors.white),
                   deleteIconColor: Colors.white,
@@ -160,8 +160,8 @@ class Language extends Taggable {
 
   /// Creates Language
   Language({
-    this.name,
-    this.position,
+    required this.name,
+    required this.position,
   });
 
   @override
