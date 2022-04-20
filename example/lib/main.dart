@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   labelText: 'Select Tags',
                 ),
               ),
-              findSuggestions: LanguageService.getLanguages,
+              findSuggestions: getLanguages,
               additionCallback: (value) {
                 return Language(
                   name: value,
@@ -132,22 +132,19 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-/// LanguageService
-class LanguageService {
-  /// Mocks fetching language from network API with delay of 500ms.
-  static Future<List<Language>> getLanguages(String query) async {
-    await Future.delayed(Duration(milliseconds: 500), null);
-    return <Language>[
-      Language(name: 'JavaScript', position: 1),
-      Language(name: 'Python', position: 2),
-      Language(name: 'Java', position: 3),
-      Language(name: 'PHP', position: 4),
-      Language(name: 'C#', position: 5),
-      Language(name: 'C++', position: 6),
-    ]
-        .where((lang) => lang.name.toLowerCase().contains(query.toLowerCase()))
-        .toList();
-  }
+/// Mocks fetching language from network API with delay of 500ms.
+Future<List<Language>> getLanguages(String query) async {
+  await Future.delayed(Duration(milliseconds: 500), null);
+  return <Language>[
+    Language(name: 'JavaScript', position: 1),
+    Language(name: 'Python', position: 2),
+    Language(name: 'Java', position: 3),
+    Language(name: 'PHP', position: 4),
+    Language(name: 'C#', position: 5),
+    Language(name: 'C++', position: 6),
+  ]
+      .where((lang) => lang.name.toLowerCase().contains(query.toLowerCase()))
+      .toList();
 }
 
 /// Language Class
